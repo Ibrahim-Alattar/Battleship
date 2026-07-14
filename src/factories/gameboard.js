@@ -50,6 +50,9 @@ export function Gameboard() {
       cells[row][col].ship.hit();
     },
 
+    hasShips() {
+      return ships.length > 0;
+    },
     areAllShipsSunk() {
       // Bonus refactor: using array.every makes this a clean one-liner
       return ships.every(ship => ship.isSunk())

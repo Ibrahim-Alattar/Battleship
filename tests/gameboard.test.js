@@ -127,3 +127,13 @@ test("reports true when all ships are sunk", () => {
 
   expect(board.areAllShipsSunk()).toBe(true)
 })
+
+test("reports whether the board has ships", () => {
+  const board = Gameboard();
+
+  expect(board.hasShips()).toBe(false);
+
+  board.placeShip(Ship(1), 3, 4, "horizontal");
+
+  expect(board.hasShips()).toBe(true);
+});
