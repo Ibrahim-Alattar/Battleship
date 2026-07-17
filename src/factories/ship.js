@@ -1,20 +1,23 @@
 export function Ship(length) {
   let hits = 0;
+
   return {
     getLength() {
-      return length
+      return length;
     },
+
     hit() {
-      if (hits >= length) return;
-      hits++
+      if (hits < length) {
+        hits++;
+      }
     },
+
     getHits() {
-      return hits
+      return hits;
     },
+
     isSunk() {
-      if (hits === length) {
-        return true
-      } else { return false }
-    }
-  }
+      return hits >= length;
+    },
+  };
 }

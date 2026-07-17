@@ -1,14 +1,75 @@
-import './styles.css';
-import { Ship } from './factories/ship.js';
-import { Gameboard } from './factories/gameboard.js';
-import { GameController } from './game/gameController.js';
+import "./styles.css";
 
-const game = GameController();
+import { GameController } from "./game/gameController.js";
+import { renderBoard } from "./dom/renderBoard.js";
+import { setupBoardEvent } from "./dom/events.js";
+import { placeShipsRandomly } from "./game/placeShipsRandomly.js";
+import {
+  setupShipPlacement,
+  rotateShips,
+  resetShipPlacement,
+} from "./dom/placeShips.js";
 
-const ship = Ship(1);
-game.getComputer().getBoard().placeShip(ship, 3, 4, "horizontal");
+const playerBoard = document.getElementById("player-board");
+const computerBoard = document.getElementById("computer-board");
 
-game.playTurn(3, 4);
+const startBtn = document.getElementById("start-btn");
+const rotateBtn = document.getElementById("rotate-btn");
+const restartBtn = document.getElementById("restart-btn");
+const status = document.getElementById("status");
 
-console.log(game.getComputer().getBoard().areAllShipsSunk());
-console.log(game.getWinner());
+let game;
+
+function updateUI() {
+  renderBoard(game.getPlayer().getBoard(), playerBoard);
+  renderBoard(game.getComputer().getBoard(), computerBoard);
+
+  if (game.isGameOver()) {
+    status.textContent =
+      game.getWinner() === game.getPlayer()
+        ? "You win!"
+        : "Computer wins!";
+  }
+}
+
+function startGame() {
+  game = GameController();
+
+  resetShipPlacement();
+
+  placeShipsRandomly(game.getComputer().getBoard());
+
+  updateUI();
+
+  status.textContent = "Place your ships";
+
+  startBtn.disabled = true;
+
+  setupShipPlacement(
+    playerBoard,
+    game,
+    updateUI,
+    startBtn
+  );
+}
+
+rotateShips(rotateBtn);
+
+startBtn.addEventListener("click", () => {
+  setupBoardEvent(
+    computerBoard,
+    game,
+    updateUI
+  );
+
+  status.textContent = "Your turn";
+
+  startBtn.disabled = true;
+  rotateBtn.disabled = true;
+});
+
+restartBtn.addEventListener("click", () => {
+  location.reload();
+});
+
+startGame();

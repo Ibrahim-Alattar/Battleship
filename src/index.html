@@ -2,11 +2,37 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Battleship</title>
 </head>
 
 <body>
+  <header>
+    <h1>Battleship</h1>
+  </header>
+
+  <main>
+    <section class="player-section">
+      <h2>Your Fleet</h2>
+      <div id="player-board" class="board"></div>
+    </section>
+
+    <section class="computer-section">
+      <h2>Enemy Fleet</h2>
+      <div id="computer-board" class="board"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="status">Place your ships</p>
+
+    <button id="rotate-btn">Horizontal</button>
+
+    <button id="start-btn" disabled>Start Game</button>
+
+    <button id="restart-btn">Restart Game</button>
+  </footer>
 </body>
 
 </html>

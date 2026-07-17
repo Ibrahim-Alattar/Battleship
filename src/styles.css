@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  border-bottom: 1px solid #334155;
+}
+
+header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+main {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+
+  padding: 2rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section h2 {
+  margin-bottom: 1rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(24px, 42px));
+  grid-template-rows: repeat(10, minmax(24px, 42px));
+
+  border: 3px solid white;
+}
+
+.cell {
+  width: min(42px, 9vw);
+  height: min(42px, 9vw);
+
+  background: #1e293b;
+  border: 1px solid #475569;
+
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+#computer-board .cell:hover {
+  background: #334155;
+}
+
+#player-board .cell:hover {
+  outline: 2px solid #facc15;
+}
+
+.ship {
+  background: #22c55e;
+}
+
+.hit {
+  background: #dc2626;
+}
+
+.miss {
+  background: #94a3b8;
+}
+
+.preview {
+  background: rgba(250, 204, 21, 0.6);
+}
+
+footer {
+  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#status {
+  min-width: 180px;
+  text-align: center;
+  font-weight: bold;
+}
+
+button {
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  cursor: pointer;
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  header {
+    padding: 1.5rem;
+  }
+
+  main {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .board {
+    grid-template-columns: repeat(10, 32px);
+    grid-template-rows: repeat(10, 32px);
+  }
+
+  .cell {
+    width: 32px;
+    height: 32px;
+  }
+
+  section h2 {
+    font-size: 1.1rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  button {
+    width: 220px;
+  }
+
+  #status {
+    min-width: auto;
+  }
+}

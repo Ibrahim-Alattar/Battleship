@@ -1,12 +1,15 @@
-import { Gameboard } from './gameboard.js'
+import { Gameboard } from "./gameboard.js";
+
 export function Player() {
-  const board = Gameboard()
+  const board = Gameboard();
+
   return {
     getBoard() {
-      return board
+      return board;
     },
-    attack(enemy, row, col) {
-      return enemy.receiveAttack(row, col)
-    }
-  }
+
+    attack(enemyBoard, row, col) {
+      return enemyBoard.receiveAttack(row, col);
+    },
+  };
 }
