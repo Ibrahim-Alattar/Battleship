@@ -88,7 +88,7 @@ src/
 
 ## Live Demo
 
-Add your deployment link here.
+[https://ibrahim-alattar.github.io/Battleship/]
 
 ## License
 
